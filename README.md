@@ -8,6 +8,7 @@
 # Linux:
 
 Download Release
+`chmod +x tk-linux`
 
 `sudo mv tk-linux /usr/local/bin`
 

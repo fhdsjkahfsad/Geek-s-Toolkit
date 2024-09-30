@@ -9,7 +9,7 @@
 
 Download Release
 
-`sudo mv tk-linux /usr/bin`
+`sudo mv tk-linux /usr/local/bin`
 
 `tk-linux YOUR_NAME`
 

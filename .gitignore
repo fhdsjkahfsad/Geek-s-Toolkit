@@ -1,3 +1,15 @@
 *.cmake
 *.txt
 *.exe
+
+Makefile*
+
+*.marks
+*.log
+*.out
+*.includecache
+*.internal
+*.make
+*.check_cache
+
+CMakeFiles/

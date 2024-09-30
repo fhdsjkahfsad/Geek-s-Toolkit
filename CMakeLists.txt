@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(tk)
+project(gtk)
 
-add_executable(tk src/main.c)
+add_executable(gtk src/main.c)

@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
             printf("oo\n_\n||\n");
         } else if (opt == 2) {
             char* command;
-            printf("~$");
+            printf(">>>");
             scanf("%s", command);
             int status = system(command);
             if (status == -1) {

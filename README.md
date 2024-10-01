@@ -5,19 +5,15 @@
 # Tutorial:
 
 
-# Linux:
+# Build From Source
 
-Download Release
-`chmod +x tk-linux`
+`git clone THIS_REPO`
 
-`sudo mv tk-linux /usr/local/bin`
 
-`tk-linux YOUR_NAME`
+`cd THIS_REPO/build`
 
-# Windows
+`cmake .. && make`
 
-Download Release
+`./gtk YOUR_NAME`
 
-`cd C:\path\to\tk-win`
 
-`tk-win YOUR_NAME`

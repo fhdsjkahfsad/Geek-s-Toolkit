@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdint.h>
 int main(int argc, char* argv[]) {
     
     printf("Welcome to the toolkit for geeks!\n");
@@ -19,7 +20,7 @@ int main(int argc, char* argv[]) {
         
         int opt;
         printf("Hey %s, What would you like to do?\n", name);
-        printf("opts:\n 42 to quit\n 1 to draw ghost\n 2 run command\n192 to check syslog (linux)\n");
+        printf("opts:\n 42 to quit\n 1 to draw ghost\n 2 run command\n192 to check syslog (linux)\n242 to enter root terminal\n246 to dump memory\n119 to read mem at address\n");
         printf(">>>");
         scanf("%i", &opt);
         if (opt == 42) {
@@ -53,6 +54,53 @@ int main(int argc, char* argv[]) {
             pclose(fp);
     
         
+        } else if (opt == 242) {
+            int ynroot;
+            printf("You are about to enter root shell. Continue? (y: 1/n: 2) >>>");
+            scanf("%i", &ynroot);
+            if (ynroot == 1) {
+                system("/bin/sh");
+            } else {
+                printf("will not enter shell\n");
+            }
+        }
+        else if (opt == 246) {
+            uintptr_t *stack_ptr;
+            uintptr_t base_address;
+    
+   
+            __asm__ volatile ("mov %%rsp, %0" : "=r"(stack_ptr));
+
+            printf("Stack pointer: %p\n", (void *)stack_ptr);
+
+    
+            printf("Dumping stack memory:\n");
+            for (int i = -10; i <= 10; i++) {
+                printf("Address %p: ", (void *)(stack_ptr + i));
+                // Cast to uintptr_t to avoid type issues
+                printf("%lx\n", *(uintptr_t *)(stack_ptr + i));
+            }
+            
+        } 
+        else if (opt == 119) {
+            uintptr_t address;
+            printf("Enter address (only can read string values): ");
+            scanf("%lx", &address);
+            char *ptr = (char*)address;
+
+            // Read the memory safely
+            char buffer[100];  // Buffer to store the string
+            memset(buffer, 0, sizeof(buffer)); // Clear the buffer
+
+            // Attempt to read a string from the given address
+            for (int i = 0; i < sizeof(buffer) - 1; i++) {
+                // Attempt to read each byte
+                if (ptr[i] == '\0') break; // Stop at null terminator
+                buffer[i] = ptr[i]; // Copy the byte
+            }
+
+            printf("Data at %lx: %s\n", (unsigned long)address, buffer);
+
         } else {
             printf("could not find command %i\n", opt);
         }
